@@ -1,0 +1,41 @@
+<Module>
+	<Name value="Horse Breeding"/>
+	<Id value="HorseBreeding"/>
+	<Version value="v1.5.4.1"/>
+	<SingleplayerModule value="true"/>
+	<MultiplayerModule value="false"/>
+	<DependedModules>
+		<DependedModule Id="Bannerlord.Harmony"/>
+		<DependedModule Id="Bannerlord.ButterLib"/>
+		<DependedModule Id="Bannerlord.UIExtenderEx"/>
+		<DependedModule Id="Bannerlord.MBOptionScreen"/>
+		<DependedModule Id="Bannerlord.MBOptionScreen.MCMv3"/>
+		<DependedModule Id="Bannerlord.MBOptionScreen.ModLib"/>
+		<DependedModule Id="Native"/>
+		<DependedModule Id="SandBoxCore"/>
+		<DependedModule Id="Sandbox"/>
+		<DependedModule Id="CustomBattle"/>
+		<DependedModule Id="StoryMode"/>
+	</DependedModules>
+	<SubModules>
+		<SubModule>
+			<Name value="Horse Breeding"/>
+			<DLLName value="HorseBreeding.dll"/>
+			<SubModuleClassType value="HorseBreeding.SubModule"/>
+			<Tags>
+				<Tag key="DedicatedServerType" value="none" />
+				<Tag key="IsNoRenderModeElement" value="false" />
+			</Tags>
+		</SubModule>
+	</SubModules>
+	<Xmls>
+		<XmlNode>
+			<XmlName id="Items" path="sphorses"/>
+			<IncludedGameTypes>
+				<Gametype value="Campaign"/>
+				<Gametype value="CampaignStoryMode"/>
+				<GameType value="CustomGame"/>
+			</IncludedGameTypes>
+		</XmlNode>
+	</Xmls>
+</Module>

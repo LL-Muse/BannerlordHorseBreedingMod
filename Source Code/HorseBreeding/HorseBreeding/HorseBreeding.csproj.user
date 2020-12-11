@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
+    <StartAction>Program</StartAction>
+    <StartProgram>C:\Program Files %28x86%29\Steam\steamapps\common\Mount &amp; Blade II Bannerlord\bin\Win64_Shipping_Client\Bannerlord.exe</StartProgram>
+    <StartArguments>/singleplayer _MODULES_%2aBannerlord.Harmony%2aBannerlord.ButterLib%2aBannerlord.UIExtenderEx%2aBannerlord.MBOptionScreen%2aBannerlord.MBOptionScreen.MCMv3%2aBannerlord.MBOptionScreen.ModLib%2aNative%2aSandBoxCore%2aCustomBattle%2aSandBox%2aStoryMode%2aNobleNobles%2aScoutingActuallyWorks%2aSueLordFromFamily%2azenDzeeMods_Heritage%2axMakeBrotherSister%2aAIMarriage%2aExtendedProduction%2azzBannerlordTweaks%2aCraftedItemCopyright%2aArrangedMarriage%2aMoreLooters%2aExtendedFamily%2azCaptivityEvents%2azCEAnimations%2azSadSunsEvents%2azCEDefaults%2azTBCaptivityEvents%2aSeparatism%2aCalradiaExpanded%2aCharacterReload%2aRecruitEveryone%2aVsRoyalArmoryRewritten%2aDisableCompanionDonations%2aRebuildLootedVillages%2aCustomizableLevelingRate%2aswadian armoury%2aUltimateLeaderPerkWorksInFactionPatch%2aBulkRefine%2aMoreSettlementAction%2aHorseBreeding%2a_MODULES_</StartArguments>
+    <StartWorkingDirectory>C:\Program Files %28x86%29\Steam\steamapps\common\Mount &amp; Blade II Bannerlord\bin\Win64_Shipping_Client</StartWorkingDirectory>
+  </PropertyGroup>
+</Project>
