@@ -17,7 +17,10 @@ namespace HorseBreeding
         [SettingPropertyFloatingInteger("Base Breeding Time", 1, 1000, "0.00", HintText = "Time in hours to breed horses with riding skill 0", Order = 0, RequireRestart = false)]
         public float BreedingTime { get; set; } = 24;
 
-        [SettingPropertyFloatingInteger("Riding Exp Per Horse Tier", 1, 1000, "0.00", HintText = "Riding XP gain equals this number times the tier of the horse breed", Order = 0, RequireRestart = false)]
-        public float RidingXPPerHorseTier { get; set; } = 200;
+        [SettingPropertyInteger("Riding Exp Per Horse Tier", 1, 1000, "0", HintText = "Riding XP gain equals this number times the tier of the horse breed", Order = 0, RequireRestart = false)]
+        public int RidingXPPerHorseTier { get; set; } = 200;
+
+        [SettingPropertyInteger("Grain Required Gor Breeding", 1, 1000, "0", HintText = "Grain need to breed horses", Order = 0, RequireRestart = false)]
+        public int BreedingGrain { get; set; } = 50;
     }
 }

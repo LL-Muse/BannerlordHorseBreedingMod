@@ -42,7 +42,7 @@ namespace HorseBreeding
                 return true;
             }), (GameMenuOption.OnConsequenceDelegate)(args => ShowHorseBreedList()), index: 1);
 
-            campaignGameStarter.AddWaitGameMenu("breeding_wait", "You are breeding horses at the village of " + Settlement.CurrentSettlement.GetName(), (OnInitDelegate)(args =>
+            campaignGameStarter.AddWaitGameMenu("breeding_wait", "You are breeding horses", (OnInitDelegate)(args =>
             {
                 args.MenuContext.GameMenu.SetTargetedWaitingTimeAndInitialProgress(_Duration, 0.0f);
                 args.MenuContext.GameMenu.AllowWaitingAutomatically();
@@ -52,7 +52,7 @@ namespace HorseBreeding
                 args.optionLeaveType = GameMenuOption.LeaveType.Wait;
                 return true;
             }), (TaleWorlds.CampaignSystem.GameMenus.OnConsequenceDelegate)(args => ProduceEnd()), (OnTickDelegate)((args, dt) => args.MenuContext.GameMenu.SetProgressOfWaitingInMenu(_startTime.ElapsedHoursUntilNow / _Duration)), GameMenu.MenuAndOptionType.WaitMenuShowOnlyProgressOption);
-            campaignGameStarter.AddWaitGameMenu("breeding_wait2", "You are breeding horses at the village of ", (OnInitDelegate)(args =>
+            campaignGameStarter.AddWaitGameMenu("breeding_wait2", "You are breeding horses", (OnInitDelegate)(args =>
             {
                 args.MenuContext.GameMenu.SetTargetedWaitingTimeAndInitialProgress(_Duration, 0.0f);
                 args.MenuContext.GameMenu.AllowWaitingAutomatically();
@@ -167,9 +167,9 @@ namespace HorseBreeding
 
         private void Produce()
         {
-            if (PartyBase.MainParty.ItemRoster.GetItemNumber(MBObjectManager.Instance.GetObject<ItemObject>("grain")) < 50)
+            if (PartyBase.MainParty.ItemRoster.GetItemNumber(MBObjectManager.Instance.GetObject<ItemObject>("grain")) < instance.BreedingGrain)
             {
-                InformationManager.ShowInquiry(new InquiryData("Insufficient Grain", "You need 50 grain to breed horses", true, false, "OK", "", (Action)null, (Action)null), true);
+                InformationManager.ShowInquiry(new InquiryData("Insufficient Grain", "You need " + instance.BreedingGrain + "grain to breed horses", true, false, "OK", "", (Action)null, (Action)null), true);
                 return;
             }
 
@@ -189,7 +189,7 @@ namespace HorseBreeding
 
         private void ProduceEnd()
         {
-            int max_tier = Math.Max(6, Hero.MainHero.GetSkillValue(DefaultSkills.Riding)/60);
+            int max_tier = Math.Min(6, Hero.MainHero.GetSkillValue(DefaultSkills.Riding)/50);
             int current_tier = 1;
             int next_tier_chance = 50;
             if (Hero.MainHero.GetPerkValue(DefaultPerks.Riding.Breeder))
@@ -212,9 +212,9 @@ namespace HorseBreeding
             
             PartyBase.MainParty.ItemRoster.AddToCounts(tiers[current_tier-1], 1);
             InformationManager.DisplayMessage(new InformationMessage("You have managed to breed a " + tiers[current_tier - 1].Name.ToString()));
-            PartyBase.MainParty.ItemRoster.AddToCounts(MBObjectManager.Instance.GetObject<ItemObject>("grain"), -50);
+            PartyBase.MainParty.ItemRoster.AddToCounts(MBObjectManager.Instance.GetObject<ItemObject>("grain"), -1 * instance.BreedingGrain);
 
-            if(PartyBase.MainParty.ItemRoster.GetItemNumber(MBObjectManager.Instance.GetObject<ItemObject>("grain")) < 50)
+            if(PartyBase.MainParty.ItemRoster.GetItemNumber(MBObjectManager.Instance.GetObject<ItemObject>("grain")) < instance.BreedingGrain)
             {
                 InformationManager.ShowInquiry(new InquiryData("Insufficient Grain", "You do not have enough grain to breed horses", true, false, "OK", "", (Action)null, (Action)null), true);
                 return;
@@ -227,7 +227,7 @@ namespace HorseBreeding
 
         private void Produce2End()
         {
-            int max_tier = Math.Max(6, Hero.MainHero.GetSkillValue(DefaultSkills.Riding) / 60);
+            int max_tier = Math.Min(6, Hero.MainHero.GetSkillValue(DefaultSkills.Riding) / 50);
             int current_tier = 1;
             int next_tier_chance = 50;
             if (Hero.MainHero.GetPerkValue(DefaultPerks.Riding.Breeder))
@@ -250,9 +250,9 @@ namespace HorseBreeding
 
             PartyBase.MainParty.ItemRoster.AddToCounts(tiers[current_tier - 1], 1);
             InformationManager.DisplayMessage(new InformationMessage("You have managed to breed a " + tiers[current_tier - 1].Name.ToString()));
-            PartyBase.MainParty.ItemRoster.AddToCounts(MBObjectManager.Instance.GetObject<ItemObject>("grain"), -50);
+            PartyBase.MainParty.ItemRoster.AddToCounts(MBObjectManager.Instance.GetObject<ItemObject>("grain"), -1 * instance.BreedingGrain);
 
-            if (PartyBase.MainParty.ItemRoster.GetItemNumber(MBObjectManager.Instance.GetObject<ItemObject>("grain")) < 50)
+            if (PartyBase.MainParty.ItemRoster.GetItemNumber(MBObjectManager.Instance.GetObject<ItemObject>("grain")) < instance.BreedingGrain)
             {
                 InformationManager.ShowInquiry(new InquiryData("Insufficient Grain", "You do not have enough grain to breed horses", true, false, "OK", "", (Action)null, (Action)null), true);
                 return;
